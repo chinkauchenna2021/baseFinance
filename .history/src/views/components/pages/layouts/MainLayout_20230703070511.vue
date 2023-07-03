@@ -1,0 +1,33 @@
+<template>
+  <div class="w-full flex justify-center items-center">
+    <div class="w-11/12 lg:w-7/12">
+       <Header />
+        <div class="w-11/12 lg:w-5/12 flex flex-col justify-">
+            <slot></slot>
+        </div>
+       <Footer />
+    </div>
+  </div>
+  
+</template>
+
+<script>
+import Header from './Header.vue';
+import Footer from './Footer.vue';
+export default {
+    name:"MainLayout",
+    components:{
+        Header,
+        Footer,
+    },
+    data(){
+        return{
+
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>

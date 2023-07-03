@@ -1,0 +1,1 @@
+Vue.compile(template)
