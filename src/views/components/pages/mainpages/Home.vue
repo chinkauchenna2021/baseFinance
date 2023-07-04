@@ -1,16 +1,16 @@
 <template>
    <MainLayout>
     <div class="w-full h-fit flex justify-end items-center mt-5 border-b border-b-slate-100 pb-2">
-      <div v-if="mainAccount" class="w-fit h-fit flex flex-row ">
+      <div v-if="mainAccount" class="w-fit h-fit flex flex-row my-6 lg:my-0">
       <span class="mx-3 font-medium text-black"> MoonBeam Account:</span> <span class="text-red-500 text-lg font-medium"> {{ mainAccount}} DEV</span>
         </div>
 
 
     </div>
        <div class="container mt-4 h-fit flex-col justify-center items-center w-full lg:w-full border-b border-b-slate-50">
-       <div class="w-full flex flex-row justify-center items-center h-[180px]">
-         <div class="w-fit h-fit lg:mx-5">
-             <img src="@/assets/Beam.png" class="w-40 h-28 object-cover rounded-lg bg-slate-300/80 ring ring-offset-gray-50 ring-orange-100" />
+       <div class="w-full flex lg:flex-row flex-col space-y-6 my-10 lg:my-0 lg:space-y-0 justify-center items-center h-[180px]">
+         <div class="w-fit h-fit lg:mx-5 mt-20 lg:mt-0">
+             <img src="@/assets/Beam.png" class="lg:w-40 lg:h-28 h-40 w-11/12 object-cover rounded-lg bg-slate-300/80 ring ring-offset-gray-50 ring-orange-100" />
          </div>
          <div class="w-full">
            <div class='w-full leading-snug lg:leading-normal h-fit text-lg text-center lg:text-left lg:text-3xl font-extrabold py-4 capitalize' id="title">
@@ -20,15 +20,15 @@
          </div>
        </div>
        <div class="w-full">
-       <div class="w-full flex justify-center flex-col ">
-        <div class=" border-b border-b-slate-200 pb-4 grid grid-cols-5 gap-4 place-items-center cursor-pointer px-4 text-center  mt-10 w-full lg:w-11/12  rounded-full">
+       <div class="w-full flex justify-center flex-col mt-20 lg:mt-0 ">
+        <div class="  grid grid-cols-5 lg:gap-4 space-x-16 lg:space-x-0 place-items-center cursor-pointer px-4 text-center  mt-10 w-full lg:w-11/12  rounded-full">
           <div class="w-fit h-fit flex relative hover:space-x-[3px] transition-all cursor-pointer">
            <div class="w-fit">Image</div>
           </div>
           <div class=" font-bold text-lg text-blue-400">
             Pair
           </div>
-          <div class=" h-full  flex flex-row justify-center items-center">
+          <div class=" h-full  lg:flex hidden flex-row justify-center items-center ">
           <div class="w-fit text-[13px] ">
             Description
           </div>
@@ -44,7 +44,9 @@
               </div>
               </div>
       </div>
-          <Panel_Holder senderTokenImage="USDC.png" baseTokenImage="ETH.png" title="USDC/ETH" description="Hedge USDC as a collateral with the platform for ETH" :usdc="usdcPrice"  :eth="ethPrice"/>  
+         
+  
+          <Panel_Holder senderTokenImage="USDC.png" baseTokenImage="ETH.png" title="USDC/ETH" description="Hedge USDC as a collateral with the platform for ETH" :usdc="usdcPrice"  :eth="ethPrice" routeParam="USDC-ETH"/>  
        </div>
        
        </div>   
