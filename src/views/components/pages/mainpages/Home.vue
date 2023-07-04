@@ -46,8 +46,10 @@
       </div>
          
   
-          <Panel_Holder senderTokenImage="USDC.png" baseTokenImage="ETH.png" title="USDC/ETH" description="Hedge USDC as a collateral with the platform for ETH" :usdc="usdcPrice"  :eth="ethPrice" routeParam="USDC-ETH"/>  
-       </div>
+          <Panel_Holder :contract="usdcContract" senderTokenImage="USDC.png" baseTokenImage="ETH.png" title="USDC/ETH" description="Hedge USDC as a collateral with the platform for ETH" :usdc="usdcPrice"  :eth="ethPrice" routeParam="USDC-ETH"/>  
+          <Panel_Holder :contract="aveeContract" senderTokenImage="AVEE.png" baseTokenImage="ETH.png" title="AVEE/ETH" description="Hedge AVEE as a collateral with the platform for ETH" :usdc="aveePrice"  :eth="ethPrice" routeParam="AVEE-ETH"/>  
+       
+        </div>
        
        </div>   
        </div>
@@ -60,7 +62,6 @@ import MainLayout from '../layouts/MainLayout.vue'
 import Panel_Holder from '../../modules/panel/Panel_Holder.vue';
 import {getTokenPrice , tokenProxy , baseTokenPrice} from '../../hooks/GetPrices.js';
 const AVEE_PROXY_CONTRACT="0x13d1Ed8c24911d88e6155cE32A66908399C97924"
-const ETH_PROXY_CONTRACT="0x26690F9f17FdC26D419371315bc17950a0FC90eD"
 const USDC_PROXY_CONTRACT="0x8DF7d919Fe9e866259BB4D135922c5Bd96AF6A27"
 export default {
     name:"Home",
@@ -70,10 +71,12 @@ export default {
   },
  async mounted(){
    const {borrow , mainAccountBalance } =  await getTokenPrice();
-   const {tokenPrice , tokenTimeStamp}  =   await tokenProxy(USDC_PROXY_CONTRACT)
+   const {tokenPrice:usdcPrice , tokenTimeStamp:usdcTime}  =   await tokenProxy(USDC_PROXY_CONTRACT)
+   const {tokenPrice:aveePrice , tokenTimeStamp:aveeTime}  =   await tokenProxy(AVEE_PROXY_CONTRACT)
     const {basePrice , baseTimeStamp}  = await baseTokenPrice();
    this.mainAccount = mainAccountBalance;
-   this.usdcPrice =  (tokenPrice/1E18).toFixed(2);
+   this.usdcPrice =  (usdcPrice/1E18).toFixed(2);
+   this.aveePrice =  (aveePrice/1E18).toFixed(2);
    this.ethPrice = (basePrice / 1E18).toFixed(2);
   },
   data(){
@@ -81,6 +84,9 @@ export default {
       mainAccount:"",
       usdcPrice:0,
       ethPrice:0,
+      aveePrice:0,
+      usdcContract:'0x316B3Cad43301a5A2F46198f44aEF44cbA306345',
+      aveeContract:'0xaF6385D67f47179dEF0B428Ec9a14D47628feC82'
     }
   }
 

@@ -28,7 +28,7 @@
 
 <script>
 export default {
-   props:["senderTokenImage" , "baseTokenImage" , "title" , "description" , "usdc" , "eth" , "routeParam"],
+   props:["senderTokenImage" , "baseTokenImage" , "title" , "description" , "usdc" , "eth" , "routeParam","contract"],
    data(){
     return{
         senderImage:require('../../../../assets/' +this.senderTokenImage),
@@ -38,6 +38,7 @@ export default {
         pair:this.routeParam,
         sendImage:this.senderTokenImage,
         baseRedirectImage:this.baseTokenImage,
+        contract:this.contract,
 
 
     }
@@ -46,7 +47,7 @@ export default {
     transactionPage(){
       let transactionData = JSON.stringify({pair:this.pair , description: this.description,
       title:this.title , senderImage:this.sendImage , baseImage:this.baseRedirectImage , eth:this.eth,
-      usdc:this.usdc
+      usdc:this.usdc , contract:this.contract
       })
       window.localStorage.setItem("transaction",transactionData)
       this.$router.push({name:'transaction',params:{pair:this.pair}});

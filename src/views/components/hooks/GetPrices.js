@@ -34,7 +34,6 @@ export const tokenProxy = async (tokenAddress)=>{
  let tokenTimeStamp = Number(tx[1]);
   return {tokenPrice , tokenTimeStamp}
 }
-// getBaseContractProxyPrice
 
 export const baseTokenPrice = async ()=>{
     const   {provider , signer , borrow ,mainAccountBalance }= await getTokenPrice(); 
@@ -44,3 +43,14 @@ export const baseTokenPrice = async ()=>{
    let baseTimeStamp = Number(tx[1]);
     return {basePrice , baseTimeStamp}
 }
+
+export const borrowToken = async ()=>{
+    const   {provider , signer , borrow ,mainAccountBalance }= await getTokenPrice(); 
+    const contract_borrow =   new ethers.Contract(BORROWTOKENCOTRACT ,borrow , signer);
+    const tx = await contract_borrow.getBaseContractProxyPrice();
+   let basePrice = Number(tx[0]);
+   let baseTimeStamp = Number(tx[1]);
+    return {basePrice , baseTimeStamp}
+}
+
+
